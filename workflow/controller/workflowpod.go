@@ -162,8 +162,11 @@ func (woc *wfOperationCtx) createWorkflowPod(ctx context.Context, nodeName strin
 			Name:      util.GeneratePodName(woc.wf.Name, nodeName, tmpl.Name, nodeID, util.GetWorkflowPodNameVersion(woc.wf)),
 			Namespace: woc.wf.ObjectMeta.Namespace,
 			Labels: map[string]string{
-				common.LabelKeyWorkflow:  woc.wf.ObjectMeta.Name, // Allows filtering by pods related to specific workflow
-				common.LabelKeyCompleted: "false",                // Allows filtering by incomplete workflow pods
+				common.LabelKeyWorkflow:        woc.wf.ObjectMeta.Name, // Allows filtering by pods related to specific workflow
+				common.LabelKeyCompleted:       "false",                // Allows filtering by incomplete workflow pods
+				common.LabelKeyNodeName:        nodeName,
+				common.LabelKeyNodeDisplayName: woc.wf.GetNodeByName(nodeName).DisplayName,
+				common.LabelKeyNodeApp:         woc.wf.GetNodeByName(nodeName).DisplayName,
 			},
 			Annotations: map[string]string{
 				common.AnnotationKeyNodeName: nodeName,

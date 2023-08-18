@@ -94,6 +94,13 @@ const (
 	// LabelKeyArtifactGCPodHash is a label applied to WorkflowTaskSets used by the Artifact Garbage Collection Pod
 	LabelKeyArtifactGCPodHash = workflow.WorkflowFullName + "/artifact-gc-pod"
 
+	// 节点名称，包含任务id
+	LabelKeyNodeName = "node-name"
+	// 节点展示名称，不包含任务id
+	LabelKeyNodeDisplayName = "node-display-name"
+	// 使用展示名称作为节点app名称，生成pod的label
+	LabelKeyNodeApp = "app"
+
 	// ExecutorArtifactBaseDir is the base directory in the init container in which artifacts will be copied to.
 	// Each artifact will be named according to its input name (e.g: /argo/inputs/artifacts/CODE)
 	ExecutorArtifactBaseDir = "/argo/inputs/artifacts"
